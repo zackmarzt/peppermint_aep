@@ -25,14 +25,14 @@ const server: FastifyInstance = Fastify({
   disableRequestLogging: true,
   trustProxy: true,
 });
-server.register(cors, {
+server.register(cors as any, {
   origin: "*",
 
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization", "Accept"],
 });
 
-server.register(multer.contentParser);
+server.register(multer.contentParser as any);
 
 registerRoutes(server);
 

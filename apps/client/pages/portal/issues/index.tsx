@@ -60,7 +60,7 @@ export default function Tickets() {
                 }
 
                 return (
-                  <Link href={`/portal/issue/${ticket.id}`}>
+                  <Link href={`/portal/issue/${ticket.id}`} key={ticket.id}>
                     <div className="flex flex-row w-full bg-white dark:bg-[#0A090C] dark:hover:bg-green-600 border-b-[1px] p-1.5 justify-between px-6 hover:bg-gray-100">
                       <div className="flex flex-row items-center space-x-4">
                         <span className="text-xs font-semibold">

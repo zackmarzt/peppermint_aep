@@ -137,9 +137,11 @@ function Table({ columns, data }: any) {
               {page.map((row: any, i: any) => {
                 prepareRow(row);
                 return (
-                  <tr {...row.getRowProps()} className="bg-white">
-                    {row.cells.map((cell: any) => (
+                  // eslint-disable-next-line react/jsx-key
+                  <tr key={i} {...row.getRowProps()} className="bg-white">
+                    {row.cells.map((cell: any, cellIndex: any) => (
                       <td
+                        key={cellIndex}
                         className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
                         {...cell.getCellProps()}
                       >
@@ -338,7 +340,7 @@ export default function Clients() {
             <div className="sm:flex sm:items-center">
               <div className="sm:flex-auto mt-4">
                 <p className="mt-2 text-sm text-gray-700">
-                  A list of all your organisation's tickets, regardless of
+                  A list of all your organisation&apos;s tickets, regardless of
                   status.
                 </p>
               </div>
@@ -391,7 +393,7 @@ export default function Clients() {
                         </svg>
 
                         <h3 className="mt-2 text-sm font-medium text-gray-900">
-                          You currently don't have any assigned tickets. :)
+                          You currently don&apos;t have any assigned tickets. :)
                         </h3>
                       </div>
                     </>

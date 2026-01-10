@@ -11,7 +11,8 @@
     "db:push": "prisma db push --accept-data-loss",
     "db:migrate": "prisma migrate dev",
     "build": "tsc",
-    "dev": "ts-node-dev --respawn src/main.ts"
+    "dev": "ts-node-dev --respawn src/main.ts",
+    "lint": "tsc --noEmit"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
@@ -39,7 +40,6 @@
     "@fastify/swagger": "^9.2.0",
     "@fastify/swagger-ui": "^5.1.0",
     "@prisma/client": "5.6.0",
-    "add": "^2.0.6",
     "axios": "^1.5.0",
     "bcrypt": "^5.0.1",
     "dotenv": "^16.0.0",
@@ -51,7 +51,6 @@
     "google-auth-library": "^9.14.2",
     "got": "^13.0.0",
     "handlebars": "^4.7.8",
-    "i": "^0.3.7",
     "imap": "^0.8.19",
     "jsonwebtoken": "9.0.2",
     "lru-cache": "^11.0.1",

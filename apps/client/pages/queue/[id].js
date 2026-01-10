@@ -118,9 +118,11 @@ function Table({ columns, data }) {
               {page.map((row, i) => {
                 prepareRow(row);
                 return (
-                  <tr {...row.getRowProps()} className="bg-white">
-                    {row.cells.map((cell) => (
+                  // eslint-disable-next-line react/jsx-key
+                  <tr key={i} {...row.getRowProps()} className="bg-white">
+                    {row.cells.map((cell, cellIndex) => (
                       <td
+                        key={cellIndex}
                         className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
                         {...cell.getCellProps()}
                       >
@@ -304,7 +306,7 @@ export default function AssignedTickets() {
                 </svg>
 
                 <h3 className="mt-2 text-sm font-medium text-gray-900">
-                  You currently don't have any assigned tickets. :)
+                  You currently don&apos;t have any assigned tickets. :)
                 </h3>
               </div>
             </>

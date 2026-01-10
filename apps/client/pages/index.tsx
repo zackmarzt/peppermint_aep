@@ -131,9 +131,8 @@ export default function Home() {
             <div>
               <dl className="grid grid-cols-1 gap-5 sm:grid-cols-3">
                 {stats.map((item) => (
-                  <Link href={item.href}>
+                  <Link href={item.href} key={item.name}>
                     <div
-                      key={item.name}
                       className="px-4 py-5 bg-gray-900 shadow rounded-lg overflow-hidden sm:p-6"
                     >
                       <dt className="text-sm font-medium text-white truncate">

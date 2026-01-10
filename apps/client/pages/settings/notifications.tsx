@@ -94,7 +94,7 @@ export default function UserNotifications() {
                       as="span"
                       className="text-sm text-foreground-muted"
                     >
-                      Get emailed when a ticket you're assigned to has it's
+                      Get emailed when a ticket you&apos;re assigned to has it&apos;s
                       status changed
                     </Switch.Description>
                   </span>

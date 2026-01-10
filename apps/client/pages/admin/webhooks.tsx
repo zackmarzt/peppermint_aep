@@ -102,7 +102,7 @@ export default function Notifications() {
                        <div className="sm:flex-auto">
                          <p className="mt-2 text-sm text-foreground">
                            Webhooks allow external services to be notified when certain
-                           events happen. When the specified events happen, we'll send
+                           events happen. When the specified events happen, we&apos;ll send
                            a POST request to each of the URLs you provide.
                          </p>
                        </div>

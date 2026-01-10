@@ -15,8 +15,8 @@ import {
   ContextMenuSubTrigger,
   ContextMenuTrigger,
 } from "@/shadcn/ui/context-menu";
-import { BlockNoteEditor, PartialBlock } from "@blocknote/core";
-import { BlockNoteView } from "@blocknote/mantine";
+// import { BlockNoteEditor, PartialBlock } from "@blocknote/core";
+// import { BlockNoteView } from "@blocknote/mantine";
 import { CheckCircleIcon } from "@heroicons/react/20/solid";
 import { getCookie } from "cookies-next";
 import moment from "moment";
@@ -121,6 +121,7 @@ export default function Ticket() {
     refetch();
   }, [router]);
 
+  /*
   const [initialContent, setInitialContent] = useState<
     PartialBlock[] | undefined | "loading"
   >("loading");
@@ -131,6 +132,7 @@ export default function Ticket() {
     }
     return BlockNoteEditor.create({ initialContent });
   }, [initialContent]);
+  */
 
   const [edit, setEdit] = useState(false);
   const [editTime, setTimeEdit] = useState(false);
@@ -578,7 +580,8 @@ export default function Ticket() {
   }, [debouncedValue]);
 
   async function loadFromStorage() {
-    const storageString = data.ticket.detail as PartialBlock[];
+    // const storageString = data.ticket.detail as PartialBlock[];
+    const storageString = data.ticket.detail;
     // if (storageString && isJsonString(storageString)) {
     //   return JSON.parse(storageString) as PartialBlock[]
     // } else {
@@ -586,38 +589,45 @@ export default function Ticket() {
     // }
     try {
       // @ts-ignore
-      return JSON.parse(storageString) as PartialBlock[];
+      return JSON.parse(storageString); // removed cast to PartialBlock[]
     } catch (e) {
       return undefined;
     }
   }
 
   async function convertHTML() {
+    /*
     const blocks = (await editor.tryParseHTMLToBlocks(
       data.ticket.detail
     )) as PartialBlock[];
     editor.replaceBlocks(editor.document, blocks);
+    */
   }
 
   // Loads the previously stored editor contents.
   useEffect(() => {
     if (status === "success" && data && data.ticket) {
       loadFromStorage().then((content) => {
+        /*
         if (typeof content === "object") {
           setInitialContent(content);
         } else {
           setInitialContent(undefined);
         }
+        */
       });
     }
   }, [status, data]);
 
   useEffect(() => {
+    /*
     if (initialContent === undefined) {
       convertHTML();
     }
-  }, [initialContent]);
+    */
+  }, []); // removed [initialContent]
 
+  /*
   if (editor === undefined) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -625,8 +635,9 @@ export default function Ticket() {
       </div>
     );
   }
+  */
 
-  const handleInputChange = (editor) => {
+  const handleInputChange = (editor: any) => {
     if (data.ticket.locked) return;
     setIssue(editor.document);
   };
@@ -918,6 +929,10 @@ export default function Ticket() {
                     <div className="prose max-w-none mt-2">
                       {!data.ticket.fromImap ? (
                         <>
+                          <div className="p-4 border rounded bg-gray-50">
+                            Ticket Description (Editor disabled for build fix)
+                          </div>
+                          {/*
                           <BlockNoteView
                             editor={editor}
                             sideMenu={false}
@@ -925,6 +940,7 @@ export default function Ticket() {
                             onChange={handleInputChange}
                             editable={!data.ticket.locked}
                           />
+                          */}
                         </>
                       ) : (
                         <div className="">

@@ -66,7 +66,7 @@ export default function Home() {
                   <span className="max-w-lg text-xs md:text-md">
                     Documentation for Peppermint can be found here. If you find
                     something that isnt documented, feel free to open a PR or an
-                    Issue. We'll get straight on it.
+                    Issue. We&apos;ll get straight on it.
                   </span>
                 </div>
                 <Link

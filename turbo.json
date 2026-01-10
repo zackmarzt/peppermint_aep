@@ -12,6 +12,7 @@
     "build": {
       "outputs": ["dist/**", ".next/**"]
     },
+    "lint": {},
     "dev": {
       "cache": false,
       "persistent": true

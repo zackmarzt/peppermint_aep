@@ -86,7 +86,7 @@ export default function Webhooks() {
       <div className={show === "main" ? "pt-8 sm:pt-4" : ""}>
         <p>
           Webhooks allow external services to be notified when certain events
-          happen. When the specified events happen, we'll send a POST request to
+          happen. When the specified events happen, we&apos;ll send a POST request to
           each of the URLs you provide.
         </p>
       </div>
