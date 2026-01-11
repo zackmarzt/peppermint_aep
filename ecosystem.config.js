@@ -2,21 +2,22 @@ module.exports = {
   apps: [
     {
       name: "client",
-      script: "node",
-      args: "server.js",
+      script: "server.js", // Executa diretamente
+      interpreter: "bun",  // Força o uso do Bun
       cwd: "apps/client",
       instances: "1",
       autorestart: true,
       watch: false,
       env: {
         NODE_ENV: "production",
-        PORT: 3000, // Change this to your desired port
+        PORT: 3000,
+        HOSTNAME: "0.0.0.0" // Importante para Docker
       },
     },
     {
       name: "api",
-      script: "node",
-      args: "dist/main.js",
+      script: "dist/main.js",
+      interpreter: "bun", // Força o uso do Bun
       cwd: "apps/api",
       instances: "1",
       autorestart: true,
