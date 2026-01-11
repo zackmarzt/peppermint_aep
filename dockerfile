@@ -16,10 +16,10 @@ COPY apps/docs/package.json ./apps/docs/package.json
 COPY apps/landing/package.json ./apps/landing/package.json
 COPY packages ./packages
 
-# CORREÇÃO: Copia o schema do Prisma para que o script 'postinstall' possa encontrá-lo
+# Copia o schema do Prisma
 COPY apps/api/src/prisma ./apps/api/src/prisma
 
-# Instala todas as dependências (agora deve funcionar pois o schema existe)
+# Instala todas as dependências
 RUN bun install --frozen-lockfile
 
 # --- Estágio de Build ---
@@ -27,13 +27,11 @@ FROM base AS builder
 COPY --from=deps /app/node_modules ./node_modules
 COPY --from=deps /app/apps/api/node_modules ./apps/api/node_modules
 COPY --from=deps /app/apps/client/node_modules ./apps/client/node_modules
-# O Prisma Client é gerado no postinstall, então já deve estar em node_modules/@prisma/client ou similar.
-# Mas copiamos o resto do código fonte agora.
 COPY . .
 
-# Regenera o Prisma Client explicitamente para garantir (opcional se o postinstall funcionar, mas seguro)
+# Regenera o Prisma Client (CORREÇÃO: nome do script corrigido para 'generate')
 WORKDIR /app/apps/api
-RUN bun run db:generate
+RUN bun run generate
 
 # Build do Next.js (Client)
 WORKDIR /app/apps/client
