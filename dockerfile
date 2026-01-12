@@ -2,7 +2,7 @@ FROM oven/bun:1 AS base
 WORKDIR /app
 
 # Instala dependências do sistema
-RUN apt-get update && apt-get install -y openssl
+RUN apt-get update && apt-get install -y openssl procps
 
 # --- Estágio de Dependências ---
 FROM base AS deps
@@ -57,12 +57,13 @@ COPY --from=builder /app/apps/api/node_modules ./apps/api/node_modules
 COPY --from=builder /app/apps/api/src/prisma ./apps/api/src/prisma
 
 # CLIENT: Ajusta a cópia do standalone para bater com o cwd: apps/client
-# O standalone em monorepo gera a pasta apps/client dentro dele.
-# Copiando o conteúdo de .next/standalone para a raiz /app, 
-# teremos /app/apps/client/server.js e /app/apps/client/.next/...
 COPY --from=builder /app/apps/client/.next/standalone ./
 COPY --from=builder /app/apps/client/.next/static ./apps/client/.next/static
 COPY --from=builder /app/apps/client/public ./apps/client/public
+
+# Se o server.js foi gerado na raiz (fora de apps/client), movemos para dentro
+RUN if [ -f "./server.js" ]; then mkdir -p apps/client && mv ./server.js ./apps/client/; fi
+
 
 # Config do PM2
 COPY ecosystem.config.js .

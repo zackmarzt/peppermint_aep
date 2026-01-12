@@ -7,11 +7,11 @@ module.exports = {
       cwd: "apps/client",
       instances: "1",
       autorestart: true,
-      watch: false,
+      watch: true,
       env: {
         NODE_ENV: "production",
         PORT: 3000,
-        HOSTNAME: "0.0.0.0" // Importante para Docker
+        HOSTNAME: "localhost" // Importante para Docker
       },
     },
     {
@@ -28,7 +28,8 @@ module.exports = {
         DB_USERNAME: process.env.DB_USERNAME,
         DB_PASSWORD: process.env.DB_PASSWORD,
         DB_HOST: process.env.DB_HOST,
-        secret: process.env.SECRET,
+        DB_NAME: process.env.DB_NAME,
+        //secret: process.env.SECRET,
       },
     },
   ],

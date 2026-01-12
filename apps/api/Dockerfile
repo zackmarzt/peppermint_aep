@@ -18,7 +18,7 @@ FROM base AS builder
 
 # Set working directory
 WORKDIR /app
-RUN yarn global add turbo
+RUN bun global add turbo
 COPY . .
 RUN turbo prune --scope=api --docker
 
@@ -31,7 +31,7 @@ WORKDIR /app
 COPY .gitignore .gitignore
 COPY --from=builder /app/out/json/ .
 COPY --from=builder /app/out/yarn.lock ./yarn.lock
-RUN yarn install
+RUN bun install
 
 
 # Build the project and its dependencies
@@ -41,7 +41,7 @@ COPY turbo.json /../../turbo.json
 
 # RUN rm -f apps/api/.env
 
-RUN yarn turbo run build --filter=database
+RUN bun turbo run build --filter=database
 
 FROM base AS runner
 WORKDIR /app
